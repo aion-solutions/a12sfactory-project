@@ -1,7 +1,7 @@
 {
     "name": "aion-solutions/a12sfactory-project",
-    "description": "Project template for A12S Factory (Drupal 8) projects with composer",
     "type": "project",
+    "description": "Project template for A12S Factory (Drupal 8) projects with composer",
     "license": "proprietary",
     "authors": [
         {
@@ -10,6 +10,77 @@
             "role": "Maintainer"
         }
     ],
+    "require": {
+        "aion-solutions/a12sfactory": "^1.0.0-rc11"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "require-dev": {
+        "drupal/core-composer-scaffold": "^9.2",
+        "drupal/core-dev": "^9.2"
+    },
+    "config": {
+        "component-dir": "/tmp",
+        "sort-packages": true
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "drupal-scaffold": {
+            "allowed-packages": [
+                "aion-solutions/a12sfactory",
+                "drupal/core"
+            ],
+            "file-mapping": {
+                "[web-root]/robots.txt": {
+                    "append": "config/default/robots-additions.txt"
+                }
+            },
+            "gitignore": false,
+            "locations": {
+                "web-root": "web/"
+            }
+        },
+        "enable-patching": true,
+        "installer-paths": {
+            "drush/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/easing/": [
+                "npm-asset/jquery.easing"
+            ],
+            "web/libraries/{$name}": [
+                "type:bower-asset",
+                "type:npm-asset",
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ]
+        },
+        "installer-types": [
+            "npm-asset",
+            "bower-asset"
+        ],
+        "merge-plugin": {
+            "include": [
+                "web/modules/contrib/countup/composer.asset-packagist.json",
+                "web/modules/contrib/webform/composer.libraries.json"
+            ]
+        },
+        "patchLevel": {
+            "drupal/core": "-p2"
+        }
+    },
     "repositories": {
         "drupal": {
             "type": "composer",
@@ -20,65 +91,6 @@
             "url": "https://asset-packagist.org"
         }
     },
-    "require": {
-        "aion-solutions/a12sfactory": "^1.0.0-rc11"
-    },
-    "require-dev": {
-        "drupal/core-dev": "^9.2",
-        "drupal/core-composer-scaffold": "^9.2"
-    },
-    "conflict": {
-        "drupal/drupal": "*"
-    },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "config": {
-        "component-dir": "/tmp",
-        "sort-packages": true
-    },
-    "extra": {
-        "composer-exit-on-patch-failure": true,
-        "installer-types": [
-            "npm-asset",
-            "bower-asset"
-        ],
-        "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/easing/": ["npm-asset/jquery.easing"],
-            "web/libraries/{$name}": [
-                "type:bower-asset",
-                "type:npm-asset",
-                "type:drupal-library"
-            ],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/contrib/{$name}": ["type:drupal-drush"]
-        },
-        "enable-patching": true,
-        "patchLevel": {
-            "drupal/core": "-p2"
-        },
-        "merge-plugin": {
-            "include": [
-                "web/modules/contrib/countup/composer.asset-packagist.json",
-                "web/modules/contrib/webform/composer.libraries.json"
-            ]
-        },
-        "drupal-scaffold": {
-            "allowed-packages": [
-                "aion-solutions/a12sfactory",
-                "drupal/core"
-            ],
-            "gitignore": false,
-            "locations": {
-                "web-root": "web/"
-            },
-            "file-mapping": {
-                "[web-root]/robots.txt": {
-                    "append": "config/default/robots-additions.txt"
-                }
-            }
-        }
-    }
+    "prefer-stable": true
 }
