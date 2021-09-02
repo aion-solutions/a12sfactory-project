@@ -21,11 +21,11 @@
         }
     },
     "require": {
-        "aion-solutions/a12sfactory": "^1.0.0-rc5"
+        "aion-solutions/a12sfactory": "^1.0.0-rc11"
     },
     "require-dev": {
-        "drupal/core-dev": "^8.9",
-        "drupal/core-composer-scaffold": "^8.9"
+        "drupal/core-dev": "^9.2",
+        "drupal/core-composer-scaffold": "^9.2"
     },
     "conflict": {
         "drupal/drupal": "*"
