@@ -3,31 +3,41 @@
 This project template should provide a kickstart for managing your site
 dependencies with [Composer](https://getcomposer.org/).
 
+## Requirement
+ - composer
+
 ## Usage
-
-First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
-
-> Note: The instructions below refer to the [global composer installation](https://getcomposer.org/doc/00-intro.md#globally).
-You might need to replace `composer` with `php composer.phar` (or similar) 
-for your setup.
-
-After that you can create the project:
 
 ```
 composer create-project aion-solutions/a12sfactory-project MY_PROJECT --stability dev --no-interaction
 ```
-
-With `composer require ...` you can download new dependencies to your 
-installation.
-
-```
-cd sources
-composer require drupal/devel:~1.0
-```
-
 The `composer create-project` command passes ownership of all files to the 
 project that is created. You should create a new git repository, and commit 
 all files not excluded by the .gitignore file.
+
+Then, edit and copy the .env.example with the project name
+```
+cp .env.example .env
+docker-compose up
+```
+
+On your machine: 
+```
+NAME=CHANGE-WITH-YOU-PROJECT-NAME ; echo "10.211.55.3     $NAME.a12s.local" | sudo tee -a /etc/hosts
+```
+
+## Installing Drupal
+
+You should update the `drush/drush.yml` file to set the correct title for your Website, and the account name/email if desired.
+
+The install command looks like:
+```shell
+drush si a12sfactory \
+  install_configure_form.enable_update_status_emails=NULL \
+  install_configure_form.enable_update_status_module=false \
+  install_configure_form.date_default_timezone=Europe/Luxembourg \
+  install_configure_form.site_default_country=LU
+```
 
 ## What does the template do?
 
@@ -122,19 +132,3 @@ section of composer.json:
 ### How do I switch from packagist.drupal-composer.org to packages.drupal.org?
 
 Follow the instructions in the [documentation on drupal.org](https://www.drupal.org/docs/develop/using-composer/using-packagesdrupalorg).
-
-## Installing Drupal
-
-You should update the `drush/drush.yml` file to set the correct title for your Website, and the account name/email if desired.
-
-The install command looks like:
-```shell
-drush si a12sfactory \
-  install_configure_form.enable_update_status_emails=NULL \
-  install_configure_form.enable_update_status_module=false \
-  install_configure_form.date_default_timezone=Europe/Luxembourg \
-  install_configure_form.site_default_country=LU
-```
-
-
-
