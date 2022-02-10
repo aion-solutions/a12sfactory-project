@@ -38,6 +38,10 @@ drush si a12sfactory \
   install_configure_form.date_default_timezone=Europe/Luxembourg \
   install_configure_form.site_default_country=LU
 ```
+To add contents needed by a12sfactory. Hero slider taxonomy term for example. 
+```shell
+drush ia --choice=safe
+```
 
 ## What does the template do?
 
